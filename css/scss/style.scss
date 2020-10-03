@@ -1,0 +1,154 @@
+//@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap');
+
+$font-primary: 'Quicksand', sans-serif;
+$dark: #1e2025;
+$dark2: #1d1f23;
+$dark-bckg: #373c47;
+
+
+@font-face {
+  font-family: $font-primary;
+  src: url("/fonts/Quicksand-Regular.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: $font-primary;
+  src: url("/fonts/Quicksand-Light.otf");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: $font-primary;
+  src: url("/fonts/Quicksand-Bold.otf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: $dark-bckg;
+}
+
+header {
+  font-family: $font-primary;
+  padding: 1.2em 4em;
+  background: $dark;
+  text-transform: uppercase;
+  color: #fff;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+  font-size: 1.1em;
+  font-weight: 500;
+
+  span {
+    font-weight: 100;
+    margin-left: .3em;
+
+    &:before {
+      content: ' | ';
+      padding-right: .25em;
+      top: -.1em;
+      font-weight: 100;
+      border-radius: 100px;
+      position: relative;
+    }
+  }
+}
+
+main {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+
+.grid {
+  height: calc(100% - 6em);
+  position: relative;
+  display: flex;
+  padding: 1em;
+}
+
+section.spin-grid {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-gap: 1em;
+
+  .spin-grid__visible {
+    grid-column: 1 / span 4;
+    grid-row: 1/ span 3;
+    min-height: 100%;
+  }
+  .sidebar-grid__import, .sidebar-grid__toolbar {
+    grid-column: 5;
+    min-height: 1em;
+  }
+  .sidebar-grid__import {
+    grid-row: 1/ span 2;
+  }
+}
+
+section {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  &> div {
+    background: $dark2;
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  .__content {
+    position: relative;
+    width: inherit;
+    height: inherit;
+    textarea {
+      width: calc(100% - 4em);
+      height: calc(100% - 4em);
+      padding: 2em;
+      background: transparent;
+      color: #f3f3f3;
+      border: none;
+      resize: none;
+      outline: none;
+      font-size: .9em;
+      transition: .2s;
+      font-family: monospace;
+
+      &:focus {
+        box-shadow: inset 0px 0px 0px 2px #000000;
+      }
+    }
+  }
+}
+
+.spin-grid__visible:after {
+  content: ' = ';
+  color: $dark2;
+  position: absolute;
+  font-size: 1.25em;
+  right: -.95em;
+  width: 1em;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.sidebar-grid__import:after {
+  content: ' = ';
+  color: #1c2024;
+  position: absolute;
+  font-size: 1.25em;
+  bottom: -.95em;
+  width: 1em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+
+
+

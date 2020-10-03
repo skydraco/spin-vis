@@ -1,38 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Cache-Control" content="no-cache">
     <meta charset="UTF-8">
-    <title>Spin Visualisation</title>
+    <title>Spin | Visualisation</title>
+
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
 </head>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script src="js/webglspins.min.js"></script>
 <!-- DEMO WEBGLSPINS: https://github.com/FlorianRhiem/WebGLSpins.js/blob/master/examples/demo.html -->
 
+
 <body>
 <main>
-    <section class="spin-grid">
-        <!-- SPIN VISUALISATION -->
 
-
-
-    </section>
-
-    <section class="sidebar-grid">
-        <div class="sidebar-grid__import">
-            <!-- import data -->
-
-
+    <header>
+        <div class="name">
+            Spin  <span> Visualisation </span>
         </div>
+    </header>
+    <div class="grid">
 
-        <div class="sidebar-grid__toolbar">
-            <!-- toolbar -->
+        <section class="spin-grid">
+            <div class="spin-grid__visible  resizable">
+                <!-- SPIN VISUALISATION -->
 
 
-        </div>
-    </section>
 
+            </div>
+
+            <div class="sidebar-grid__import   resizable">
+                <!-- import data -->
+                <div class="__content">
+                    <textarea name="data" id="getdata"></textarea>
+                </div>
+            </div>
+
+            <div class="sidebar-grid__toolbar">
+                <!-- toolbar -->
+
+
+            </div>
+       </section>
+
+    </div>
 
 </main>
+
+<script src="js/frontend.min.js"></script>
 </body>
 </html>
