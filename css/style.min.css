@@ -21,6 +21,11 @@ body {
   padding: 0;
   background: #373c47; }
 
+canvas {
+  height: calc(100% - 2em);
+  width: 100%;
+  padding: 1em 0; }
+
 header {
   font-family: "Quicksand", sans-serif;
   padding: 1.2em 4em;
@@ -60,7 +65,8 @@ section.spin-grid {
   section.spin-grid .spin-grid__visible {
     grid-column: 1 / span 4;
     grid-row: 1/ span 3;
-    min-height: 100%; }
+    min-height: 100%;
+    background: #191d21; }
   section.spin-grid .sidebar-grid__import, section.spin-grid .sidebar-grid__toolbar {
     grid-column: 5;
     min-height: 1em; }
@@ -70,12 +76,14 @@ section.spin-grid {
 section {
   display: flex;
   flex-wrap: wrap;
-  width: 100%; }
+  width: 100%;
+  overflow-x: hidden; }
   section > div {
     background: #1d1f23;
     height: 100%;
     width: 100%;
-    position: relative; }
+    position: relative;
+    min-width: 10em; }
   section .__content {
     position: relative;
     width: inherit;

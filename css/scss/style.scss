@@ -33,6 +33,12 @@ body {
   background: $dark-bckg;
 }
 
+canvas {
+  height: calc(100% - 2em);
+  width: 100%;
+  padding: 1em 0;
+}
+
 header {
   font-family: $font-primary;
   padding: 1.2em 4em;
@@ -81,6 +87,7 @@ section.spin-grid {
     grid-column: 1 / span 4;
     grid-row: 1/ span 3;
     min-height: 100%;
+    background: #191d21;
   }
   .sidebar-grid__import, .sidebar-grid__toolbar {
     grid-column: 5;
@@ -95,11 +102,13 @@ section {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  overflow-x: hidden;
   &> div {
     background: $dark2;
     height: 100%;
     width: 100%;
     position: relative;
+    min-width: 10em;
   }
 
   .__content {

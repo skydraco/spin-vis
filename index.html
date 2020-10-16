@@ -7,13 +7,13 @@
 
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="css/jquery-ui.css">
-</head>
+
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script src="js/webglspins.min.js"></script>
 <!-- DEMO WEBGLSPINS: https://github.com/FlorianRhiem/WebGLSpins.js/blob/master/examples/demo.html -->
 
-
+</head>
 <body>
 <main>
 
@@ -28,7 +28,7 @@
             <div class="spin-grid__visible  resizable">
                 <!-- SPIN VISUALISATION -->
 
-
+                <canvas id="webgl-canvas"></canvas>
 
             </div>
 
@@ -49,7 +49,58 @@
     </div>
 
 </main>
+<script type='text/javascript'>
+    /*var webglspins = new WebGLSpins(document.getElementById('webgl-canvas'), {
+        cameraLocation: [0, 0, -5],
+        backgroundColor: [0.1,0.11,0.13]
+    });
+    */
 
+    var n = 1000;
+
+
+    var webglspins = new WebGLSpins(document.getElementById('webgl-canvas'), {
+        cameraLocation: [Math.sqrt(n)/1.5, Math.sqrt(n)*0.95, Math.sqrt(n)*2.5],
+        centerLocation: [Math.sqrt(n)/1.5, Math.sqrt(n)*0.95, 0],
+        upVector: [0, 1, 0],
+        levelOfDetail: 5,
+        backgroundColor: [0.1,0.11,0.13],
+        renderers: [
+            WebGLSpins.renderers.ARROWS,
+            [WebGLSpins.renderers.SPHERE, [0.0, 0.0, 0.2, 0.2]],
+            [WebGLSpins.renderers.COORDINATESYSTEM,[0.0,0.2,0.2,0.2]]
+        ]
+
+    });
+
+    var iteration = 0;
+    function simulate() {
+
+        iteration += 1;
+        var spinPositions = [];
+        var spinDirections = [];
+        for (var row = 0; row < Math.sqrt(n); row++)
+        {
+            for (var column = 0; column  < Math.sqrt(n); column++)
+            {
+                var spinPosition = [2 * column, 2 * row, 0];
+                Array.prototype.push.apply(spinPositions, spinPosition);
+                var spinDirection = [
+                Math.sin(column * 0.3) * Math.cos((row + iteration) * 0.05),
+                Math.cos(column * 0.3) * Math.cos((row + iteration) * 0.05),
+                Math.sin((row + iteration) * 0.05)];
+                Array.prototype.push.apply(spinDirections, spinDirection);
+            }
+        }
+        webglspins.updateSpins(spinPositions, spinDirections);
+    }
+
+    $(document).ready(function() {
+        simulate();
+
+    });
+
+</script>
 <script src="js/frontend.min.js"></script>
 </body>
 </html>
