@@ -48,10 +48,7 @@
                     <!-- toolbar -->
                     <p>
                         <p>
-                            <input type="file" id="file-positions" accept=".txt"> Позиции
-                        </p>
-                        <p>
-                            <input type="file" id="file-directions" accept=".txt"> Направления
+                            <input type="file" id="file" accept=".txt"> Файл
                         </p>
                         <button type="button" onclick="simulateObject.downloadFile();">Сохранить</button>
                         <button type="button" onclick="simulateObject.simulateByData();">Отобразить</button>
@@ -66,26 +63,13 @@
     <script type='text/javascript'>
         $(document).ready(function() {
             simulateObject.simulateNew();
-            const filePositions = document.getElementById('file-positions');
-            const fileDirections = document.getElementById('file-directions');
-            filePositions.addEventListener('change', (event) => {
+            const fileinput = document.getElementById('file');
+            fileinput.addEventListener('change', (event) => {
                 const file = event.target.files[0];
                 const reader = new FileReader();
                 reader.addEventListener('load', (event) => {
                     let text = event.target.result;
-                    let result = text.split `,`.map(x => +x);
-                    simulateObject.spinPositions = result;
-                });
-                reader.readAsText(file);
-            });
-
-            fileDirections.addEventListener('change', (event) => {
-                const file = event.target.files[0];
-                const reader = new FileReader();
-                reader.addEventListener('load', (event) => {
-                    let text = event.target.result;
-                    let result = text.split `,`.map(x => +x);
-                    simulateObject.spinDirections = result;
+                    parseToArrays(text, simulateObject);
                 });
                 reader.readAsText(file);
             });
