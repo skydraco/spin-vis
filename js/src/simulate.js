@@ -11,14 +11,16 @@ var bluewhitered = 'vec3 colormap(vec3 direction) { \
                         }';
 let webglspins;
 let iteration = 0;
-let n=400;
+let n = 0;
 let simulateObject = {
     spinPositions: [],
     spinDirections: [],
-    simulateNew: (n) => {
+    spinNeighbor: [],
+    simulateNew: (N) => {
+        n = N;
         simulateObject.spinPositions = [];
         simulateObject.spinDirections = [];
-        var webglspins = simulateObject.createwebglspins(n);
+        webglspins = simulateObject.createwebglspins();
         iteration += 1;
         for (var row = 0; row < Math.sqrt(n); row++) {
             for (var column = 0; column < Math.sqrt(n); column++) {

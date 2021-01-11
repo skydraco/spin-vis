@@ -13,7 +13,6 @@
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/src/FileSaver.js"></script>
     <script src="js/src/simulate.js"></script>
-    <script src="js/src/calc.js"></script>
     <!-- <script src="js/src/download.js"></script> -->
     <script src="js/webglspins.min.js"></script>
     <!-- DEMO WEBGLSPINS: https://github.com/FlorianRhiem/WebGLSpins.js/blob/master/examples/demo.html -->
@@ -85,7 +84,7 @@
                         </p>
                         <button type="button" onclick="simulateObject.downloadFile();">Сохранить</button>
                         <button type="button" onclick="simulateObject.simulateByData();">Отобразить</button>
-                        <button type="button" onclick="simulateObject.simulateNew(0);">Сбросить</button>
+                        <button type="button" onclick="simulateObject.simulateNew(400);">Сбросить</button>
                     </p>
                 </div>
             </section>
@@ -95,8 +94,7 @@
     </main>
     <script type='text/javascript'>
         $(document).ready(function() {
-            var N = 100;
-            simulateObject.simulateNew(N);
+            simulateObject.simulateNew(400);
             const filePositions = document.getElementById('file-positions');
             const fileDirections = document.getElementById('file-directions');
             filePositions.addEventListener('change', (event) => {
