@@ -21,9 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8a76f8b2-af58-4ca1-83e4-1e8d88699962" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/src/simulate.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/src/simulate.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +92,7 @@
       <workItem from="1602826525814" duration="5641000" />
       <workItem from="1602844569591" duration="1407000" />
       <workItem from="1602846012174" duration="43000" />
-      <workItem from="1610343138496" duration="5506000" />
+      <workItem from="1610343138496" duration="5740000" />
     </task>
     <servers />
   </component>
@@ -122,9 +120,9 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="640" y="311" key="publish.login" timestamp="1610352837976">
+    <state x="640" y="311" key="publish.login" timestamp="1610353314719">
       <screen x="0" y="0" width="1536" height="960" />
     </state>
-    <state x="640" y="311" key="publish.login/0.0.1536.960@0.0.1536.960" timestamp="1610352837976" />
+    <state x="640" y="311" key="publish.login/0.0.1536.960@0.0.1536.960" timestamp="1610353314719" />
   </component>
 </project>
