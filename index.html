@@ -13,6 +13,7 @@
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/src/FileSaver.js"></script>
     <script src="js/src/simulate.js"></script>
+    <script src="js/src/calc.js"></script>
     <!-- <script src="js/src/download.js"></script> -->
     <script src="js/webglspins.min.js"></script>
     <!-- DEMO WEBGLSPINS: https://github.com/FlorianRhiem/WebGLSpins.js/blob/master/examples/demo.html -->
@@ -35,13 +36,42 @@
 
                     <canvas id="webgl-canvas"></canvas>
 
+
                 </div>
 
                 <div class="sidebar-grid__import   resizable">
                     <!-- import data -->
                     <div class="__content">
-                        <textarea name="data" id="getdata"></textarea>
+                        <div class="__content">
+                            <head>
+                                <script language="javascript"></script>
+                            </head>
+                            <form name="sci-calc">
+                                <table class="calculator" cellspacing="0" cellpadding="1">
+                                    <tr>
+                                        <td colspan="5"><input id="display" name="display" value="0" size="28" maxlength="25"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="button" class="btnTop" name="btnTop" value="C" title="Сброс" onclick="this.form.display.value=  0 "></td>
+                                        <td><input type="button" class="btnTop" name="btnTop" value="H" title="Энергия системы" onclick="simulateObject.energy(form)"></td>
+                                        <td><input type="button" class="btnOpps" name="btnOpps" value="M" title="Намагниченность" onclick="simulateObject.magnetization(form)"></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><input type="button" class="btnMath" name="btnMath" value="S" title="Создать скирмион" onclick=" simulateObject.skyrmion_create()"></td>
+                                        <td><input type="button" class="btnMath" name="btnMath" value="F" title="Создать ферромагнетик" onclick="simulateObject.ferromagnetic_create()"></td>
+                                        <td><input type="button" class="btnMath" name="btnMath" value="R-I" title="Создать случайную модель Изинга" onclick="simulateObject.randomspinIzing_create()"></td>
+                                        <td><input type="button" class="btnMath" name="btnMath" value="R" title="Создать случайную модель" onclick="simulateObject.randomspin_create()"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="button" class="btnOops" name="btnMath" value="Camera Default" onclick="simulateObject.default_camera()"></td>
+                                    </tr>
+
+                                </table>
+
+                            </form>
                     </div>
+                </div>
                 </div>
 
                 <div class="sidebar-grid__toolbar">
@@ -55,7 +85,7 @@
                         </p>
                         <button type="button" onclick="simulateObject.downloadFile();">Сохранить</button>
                         <button type="button" onclick="simulateObject.simulateByData();">Отобразить</button>
-                        <button type="button" onclick="simulateObject.simulateNew();">Сбросить</button>
+                        <button type="button" onclick="simulateObject.simulateNew(0);">Сбросить</button>
                     </p>
                 </div>
             </section>
@@ -65,7 +95,8 @@
     </main>
     <script type='text/javascript'>
         $(document).ready(function() {
-            simulateObject.simulateNew();
+            var N = 100;
+            simulateObject.simulateNew(N);
             const filePositions = document.getElementById('file-positions');
             const fileDirections = document.getElementById('file-directions');
             filePositions.addEventListener('change', (event) => {
