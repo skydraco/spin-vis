@@ -36,6 +36,7 @@
 
                     <canvas id="webgl-canvas"></canvas>
 
+
                 </div>
 
                 <div class="sidebar-grid__import   resizable">
@@ -84,7 +85,7 @@
                         </p>
                         <button type="button" onclick="simulateObject.downloadFile();">Сохранить</button>
                         <button type="button" onclick="simulateObject.simulateByData();">Отобразить</button>
-                        <button type="button" onclick="simulateObject.simulateNew();">Сбросить</button>
+                        <button type="button" onclick="simulateObject.simulateNew(0);">Сбросить</button>
                     </p>
                 </div>
             </section>
@@ -94,7 +95,8 @@
     </main>
     <script type='text/javascript'>
         $(document).ready(function() {
-            simulateObject.simulateNew();
+            var N = 100;
+            simulateObject.simulateNew(N);
             const filePositions = document.getElementById('file-positions');
             const fileDirections = document.getElementById('file-directions');
             filePositions.addEventListener('change', (event) => {

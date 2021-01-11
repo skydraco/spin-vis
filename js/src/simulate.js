@@ -15,11 +15,10 @@ let n=400;
 let simulateObject = {
     spinPositions: [],
     spinDirections: [],
-    spinNeighbor: [],
-    simulateNew: () => {
+    simulateNew: (n) => {
         simulateObject.spinPositions = [];
         simulateObject.spinDirections = [];
-        webglspins = simulateObject.createwebglspins();
+        var webglspins = simulateObject.createwebglspins(n);
         iteration += 1;
         for (var row = 0; row < Math.sqrt(n); row++) {
             for (var column = 0; column < Math.sqrt(n); column++) {
