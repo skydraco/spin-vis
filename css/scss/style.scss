@@ -1,6 +1,7 @@
 //@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap');
 
 $font-primary: 'Quicksand', sans-serif;
+$col-btn: #353b44;
 $dark: #1e2025;
 $dark2: #1d1f23;
 $dark-bckg: #373c47;
@@ -85,7 +86,7 @@ section.spin-grid {
 
   .spin-grid__visible {
     grid-column: 1 / span 4;
-    grid-row: 1/ span 3;
+    grid-row: 1/ span 10;
     min-height: 100%;
     background: #191d21;
   }
@@ -94,7 +95,12 @@ section.spin-grid {
     min-height: 1em;
   }
   .sidebar-grid__import {
-    grid-row: 1/ span 2;
+    grid-row: 1/ span 1;
+  }
+  .sidebar-grid__toolbar {
+    grid-row: 2/ span 9;
+    padding: .5em;
+    color: #fff;
   }
 }
 
@@ -139,7 +145,7 @@ section {
   content: ' = ';
   color: $dark2;
   position: absolute;
-  font-size: 1.25em;
+  font-size: 1.35em;
   right: -.95em;
   width: 1em;
   top: 50%;
@@ -157,7 +163,75 @@ section {
   transform: translateX(-50%);
 }
 
+form[name="sci-calc"] {
+  padding-bottom: 1.25em;
+  border-bottom: 3px solid #353b44;
+}
+
+input#display {
+  width: calc(100% - 5em);
+  padding: 1em 2em;
+  text-align: right;
+  border: none;
+  background: $col-btn;
+  border-radius: 3px;
+  margin: .5em;
+  color: #e8e8e9;
+  font-family: $font-primary;
+}
+
+.__head {
+  color: #d4d4d4;
+  font-size: .16em;
+  padding: .75em;
+  visibility: hidden;
+  /* font-size: .85em;*/
+  font-family: $font-primary;
+}
+
+.__body {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: space-evenly;
+  font-family: $font-primary;
+
+  .btn {
+    background: $col-btn;
+    color: #fff;
+    padding: 1em 0;
+    font-size: .65em;
+    text-transform: uppercase;
+    border: 0;
+    outline: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: .2s;
+    &:hover {
+      background: #2a2f35;
+      box-shadow: 2px 2px 8px 2px #0000;
+    }
+  }
+  &.col-2 > .btn {
+    width: calc(50% - 1em);
+  }
+  &.col-4 > .btn {
+    width: calc(25% - 1em);
+  }
+}
 
 
-
+.sci-calc-input {
+  position: relative;
+  #value {
+    transform: translateY(-50%);
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    color: #9ca2a9;
+    left: 1.25em;
+    font-family: $font-primary;
+    font-size: .75em;
+  }
+}
 

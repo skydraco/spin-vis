@@ -42,32 +42,35 @@
                     <!-- import data -->
                     <div class="__content">
                         <div class="__content">
-                            <head>
-                                <script language="javascript"></script>
-                            </head>
+
                             <form name="sci-calc">
-                                <table class="calculator" cellspacing="0" cellpadding="1">
-                                    <tr>
-                                        <td colspan="5"><input id="display" name="display" value="0" size="28" maxlength="25"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="button" class="btnTop" name="btnTop" value="C" title="Сброс" onclick="this.form.display.value=  0 "></td>
-                                        <td><input type="button" class="btnTop" name="btnTop" value="H" title="Энергия системы" onclick="simulateObject.energy(form)"></td>
-                                        <td><input type="button" class="btnOpps" name="btnOpps" value="M" title="Намагниченность" onclick="simulateObject.magnetization(form)"></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td><input type="button" class="btnMath" name="btnMath" value="S" title="Создать скирмион" onclick=" simulateObject.skyrmion_create()"></td>
-                                        <td><input type="button" class="btnMath" name="btnMath" value="F" title="Создать ферромагнетик" onclick="simulateObject.ferromagnetic_create()"></td>
-                                        <td><input type="button" class="btnMath" name="btnMath" value="R-I" title="Создать случайную модель Изинга" onclick="simulateObject.randomspinIzing_create()"></td>
-                                        <td><input type="button" class="btnMath" name="btnMath" value="R" title="Создать случайную модель" onclick="simulateObject.randomspin_create()"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="button" class="btnOops" name="btnMath" value="Camera Default" onclick="simulateObject.default_camera()"></td>
-                                    </tr>
-
-                                </table>
-
+                                <div class="sci-calc-input">
+                                       <input id="display" name="display" maxlength="25" value="0.00" disabled/>
+                                    <div id="value"></div>
+                                </div>
+                                <div class="sci-calc-btn">
+                                    <div class="__head">Расчитать</div>
+                                    <div class="__body col-2">
+                                        <button type="button" class="btn" title="Энергия системы" onclick="simulateObject.energy(form); changeValue('E =')">Энергия системы</button>
+                                        <button type="button" class="btn" title="Намагниченность" onclick="simulateObject.magnetization(form); changeValue('M =')" >Намагниченность</button>
+                                    </div>
+                                </div>
+                                <div class="sci-calc-btn">
+                                    <div class="__head">Сгенерировать модель</div>
+                                    <div class="__body col-4">
+                                        <button type="button" class="btn" title="Скирмион" onclick="simulateObject.skyrmion_create(); getNewValue(form)">S</button>
+                                        <button type="button" class="btn" title="Ферромагнетик" onclick="simulateObject.ferromagnetic_create(); getNewValue(form)">F</button>
+                                        <button type="button" class="btn" title="Cлучайная модель Изинга" onclick="simulateObject.randomspinIzing_create(); getNewValue(form)">R-I</button>
+                                        <button type="button" class="btn" title="Cлучайная модель" onclick="simulateObject.randomspin_create(); getNewValue(form)">R</button>
+                                    </div>
+                                </div>
+                                <div class="sci-calc-btn">
+                                    <div class="__head">Инструменты</div>
+                                    <div class="__body col-2">
+                                        <button type="button" class="btn" title="Cлучайная модель Изинга" onclick="simulateObject.simulateNew(400); this.form.display.value='0.00'; changeValue('')">Сбросить</button>
+                                        <button type="button" class="btn" title="Cлучайная модель" onclick="simulateObject.default_camera()">Камера по-умолчанию</button>
+                                    </div>
+                                </div>
                             </form>
                     </div>
                 </div>
@@ -119,6 +122,17 @@
                 reader.readAsText(file);
             });
         });
+
+        function changeValue(value) {
+            document.getElementById('value').innerText=value;
+        }
+
+        function getNewValue(e) {
+            form = e;
+            value = document.getElementById('value').innerText;
+            if (value == "E =") simulateObject.energy(form);
+            if (value == "M =")  simulateObject.magnetization(form);
+        }
     </script>
     <script src="js/frontend.min.js"></script>
 </body>
