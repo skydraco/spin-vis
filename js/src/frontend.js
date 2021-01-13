@@ -33,8 +33,14 @@ $('#file-directions').on('input keyup', function() {
 });
 
 $('#refresh').on('click', function() {
-    $('[for="file-positions"]').find('span').text('Импорт позиций');
-    $('[for="file-directions"]').find('span').text('Импорт направлений');
+   // $('[for="file-positions"]').find('span').text('Импорт позиций');
+   // $('[for="file-directions"]').find('span').text('Импорт направлений');
+    label = $('.is-ready');
+    label.addClass('is-active');
+    setTimeout(function() {
+        label.removeClass('is-active');
+        label.removeClass('is-ready');
+    },520);
 });
 
 $('.checked').on('click', function() {
@@ -48,10 +54,22 @@ $('.check-refresh').on('click', function() {
 
 function fileInfo(label, text) {
     label.addClass('is-active');
+    label.addClass('is-ready');
 
     setTimeout(function() {
         label.removeClass('is-active');
-        label.find('span').text('Импорт ' + text + ' завершен');
+        //label.find('span').text('Импорт ' + text + ' завершен');
     },520);
+}
+
+function changeValue(value) {
+    document.getElementById('value').innerText=value;
+}
+
+function getNewValue(e) {
+    form = e;
+    value = document.getElementById('value').innerText;
+    if (value == "E =") simulateObject.energy(form);
+    if (value == "M =")  simulateObject.magnetization(form);
 }
 
