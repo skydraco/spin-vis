@@ -2,4 +2,4 @@
 ### Визуализация спиновой решетки онлайн
     https://skydraco.github.io/spin-vis/
 
-###### © Copyright 2021. ver 0.1.12
+###### © Copyright 2021. ver 0.1.13

@@ -479,13 +479,16 @@ input#display {
 
 .conf-load {
   padding: 0 1em;
+  margin-top: 1em;
 
   .btn {
-    width: calc(100% - 2em);
+    width: calc(100% - 5em);
     display: block;
-    text-align: center;
     font-family: $font-primary;
     margin: 1em 0;
+    text-align: left;
+    padding-left: 3em;
+    padding-top: 1.15em;
   }
   input {display: none}
 }
@@ -509,9 +512,9 @@ label {
   display: flex;
   padding: .75em 1em;
   justify-content: space-between;
-  border-top: 1px solid #000;
   &> .btn {
-    width: 30%;
+    //width: 30%;
+    width: calc(50% - 1em);
   }
 }
 
@@ -522,11 +525,29 @@ label {
   transition: .1s;
 }
 
+label {
+  svg.act {
+    opacity: 0;
+  }
+  svg.no-act {
+    opacity: 1;
+  }
+}
+
+label.is-ready {
+  svg.act {
+    opacity: 1;
+  }
+  svg.no-act {
+    opacity: 0;
+  }
+}
+
 label.is-active {
   .cssload-container {
     opacity: 1;
   }
-  svg {
+  svg.act, svg.no-act {
     opacity: 0;
   }
 }
@@ -576,4 +597,34 @@ label.is-active {
   right: 4em;
   //left: 50%;
   //transform: translateX(-50%);
+}
+
+.conf-init {
+  display: flex;
+  font-family: $font-primary;
+  width: calc(100% - 3.25em);
+  padding: .75em 1em;
+  justify-content: space-between;
+  border-bottom: 1px solid #101113;
+  font-size: .85em;
+  input {
+    width: 3em;
+    padding: .6em .1em .6em 1em;
+    text-align: right;
+    border: none;
+    background: #f1f0f0;
+    border-radius: 3px;
+    margin: .5em;
+    color: #1d2125;
+    font-family: "Quicksand", sans-serif;
+    float: right;
+  }
+  span {
+    top: 1.15em;
+    position: relative;
+    color: #89939e;
+  }
+  .__text {
+    width: 100%;
+  }
 }
