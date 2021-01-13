@@ -4,15 +4,16 @@
 <head>
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta charset="UTF-8">
-    <title>Spin | Visualisation</title>
+    <title>VISUAL SPIN - Визуализация спинов</title>
 
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="https://github.githubassets.com/favicons/favicon-dark.svg">
 
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
-    <script src="js/src/FileSaver.js"></script>
-    <script src="js/src/simulate.js"></script>
+    <script src="js/FileSaver.min.js"></script>
+    <script src="js/simulate.min.js"></script>
     <!-- <script src="js/src/download.js"></script> -->
     <script src="js/webglspins.min.js"></script>
     <!-- DEMO WEBGLSPINS: https://github.com/FlorianRhiem/WebGLSpins.js/blob/master/examples/demo.html -->
@@ -24,7 +25,20 @@
 
         <header>
             <div class="name">
-                Spin <span> Visualisation </span>
+                <div class="cssload-loader">
+                    <div class="cssload-inner cssload-one"></div>
+                    <div class="cssload-inner cssload-two"></div>
+                    <div class="cssload-inner cssload-three"></div>
+                </div>
+                <div class="cssload-text">
+                    VISUAL SPIN <span>Визуализация спинов</span>
+                </div>
+
+                <div class="name-left">
+                    <a href="https://github.com/skydraco/spin-vis" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">    <path d="M15,3C8.373,3,3,8.373,3,15c0,5.623,3.872,10.328,9.092,11.63C12.036,26.468,12,26.28,12,26.047v-2.051 c-0.487,0-1.303,0-1.508,0c-0.821,0-1.551-0.353-1.905-1.009c-0.393-0.729-0.461-1.844-1.435-2.526 c-0.289-0.227-0.069-0.486,0.264-0.451c0.615,0.174,1.125,0.596,1.605,1.222c0.478,0.627,0.703,0.769,1.596,0.769 c0.433,0,1.081-0.025,1.691-0.121c0.328-0.833,0.895-1.6,1.588-1.962c-3.996-0.411-5.903-2.399-5.903-5.098 c0-1.162,0.495-2.286,1.336-3.233C9.053,10.647,8.706,8.73,9.435,8c1.798,0,2.885,1.166,3.146,1.481C13.477,9.174,14.461,9,15.495,9 c1.036,0,2.024,0.174,2.922,0.483C18.675,9.17,19.763,8,21.565,8c0.732,0.731,0.381,2.656,0.102,3.594 c0.836,0.945,1.328,2.066,1.328,3.226c0,2.697-1.904,4.684-5.894,5.097C18.199,20.49,19,22.1,19,23.313v2.734 c0,0.104-0.023,0.179-0.035,0.268C23.641,24.676,27,20.236,27,15C27,8.373,21.627,3,15,3z" fill="#fff"></path></svg>
+                    </a>
+                </div>
             </div>
         </header>
         <div class="grid">
@@ -38,10 +52,8 @@
 
                 </div>
 
-                <div class="sidebar-grid__import   resizable">
+                <div class="sidebar-grid__import resizable">
                     <!-- import data -->
-                    <div class="__content">
-                        <div class="__content">
 
                             <form name="sci-calc">
                                 <div class="sci-calc-input">
@@ -58,42 +70,56 @@
                                 <div class="sci-calc-btn">
                                     <div class="__head">Сгенерировать модель</div>
                                     <div class="__body col-4">
-                                        <button type="button" class="btn" title="Скирмион" onclick="simulateObject.skyrmion_create(); getNewValue(form)">S</button>
-                                        <button type="button" class="btn" title="Ферромагнетик" onclick="simulateObject.ferromagnetic_create(); getNewValue(form)">F</button>
-                                        <button type="button" class="btn" title="Cлучайная модель Изинга" onclick="simulateObject.randomspinIzing_create(); getNewValue(form)">R-I</button>
-                                        <button type="button" class="btn" title="Cлучайная модель" onclick="simulateObject.randomspin_create(); getNewValue(form)">R</button>
+                                        <button type="button" class="btn checked" title="Скирмион" onclick="simulateObject.skyrmion_create(); getNewValue(form)">S</button>
+                                        <button type="button" class="btn checked" title="Ферромагнетик" onclick="simulateObject.ferromagnetic_create(); getNewValue(form)">F</button>
+                                        <button type="button" class="btn checked" title="Cлучайная модель Изинга" onclick="simulateObject.randomspinIzing_create(); getNewValue(form)">R-I</button>
+                                        <button type="button" class="btn checked" title="Cлучайная модель" onclick="simulateObject.randomspin_create(); getNewValue(form)">R</button>
                                     </div>
                                 </div>
                                 <div class="sci-calc-btn">
                                     <div class="__head">Инструменты</div>
                                     <div class="__body col-2">
-                                        <button type="button" class="btn" title="Cлучайная модель Изинга" onclick="simulateObject.simulateNew(400); this.form.display.value='0.00'; changeValue('')">Сбросить</button>
-                                        <button type="button" class="btn" title="Cлучайная модель" onclick="simulateObject.default_camera()">Камера по-умолчанию</button>
+                                        <button type="button" class="btn check-refresh" title="Очистить" onclick="simulateObject.simulateNew(400); this.form.display.value='0.00'; changeValue('')">Очистить</button>
+                                        <button type="button" class="btn" title="Камера по умолчанию" onclick="simulateObject.default_camera()">Камера по умолчанию</button>
                                     </div>
                                 </div>
                             </form>
-                    </div>
-                </div>
                 </div>
 
                 <div class="sidebar-grid__toolbar">
                     <!-- toolbar -->
-                    <p>
-                        <p>
-                            <input type="file" id="file-positions" accept=".txt"> Позиции
-                        </p>
-                        <p>
-                            <input type="file" id="file-directions" accept=".txt"> Направления
-                        </p>
-                        <button type="button" onclick="simulateObject.downloadFile();">Сохранить</button>
-                        <button type="button" onclick="simulateObject.simulateByData();">Отобразить</button>
-                        <button type="button" onclick="simulateObject.simulateNew(400);">Сбросить</button>
-                    </p>
+                   <div class="conf-load">
+                       <label for="file-positions" class="btn">
+                           <div class="cssload-container">
+                               <div class="cssload-speeding-wheel"></div>
+                           </div>
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M 29 4.53125 C 23.785156 4.53125 19.371094 7.652344 17.25 12.0625 C 16.121094 11.285156 14.8125 10.71875 13.34375 10.71875 C 9.617188 10.71875 6.644531 13.667969 6.4375 17.34375 C 2.710938 18.6875 0 22.164063 0 26.34375 C 0 31.671875 4.328125 36 9.65625 36 L 18 36 C 18.359375 36.003906 18.695313 35.816406 18.878906 35.503906 C 19.058594 35.191406 19.058594 34.808594 18.878906 34.496094 C 18.695313 34.183594 18.359375 33.996094 18 34 L 9.65625 34 C 5.40625 34 2 30.589844 2 26.34375 C 2 22.808594 4.382813 19.832031 7.625 18.9375 C 8.066406 18.808594 8.363281 18.394531 8.34375 17.9375 C 8.339844 17.796875 8.34375 17.726563 8.34375 17.71875 C 8.34375 14.941406 10.566406 12.71875 13.34375 12.71875 C 14.734375 12.71875 16 13.277344 16.90625 14.1875 C 17.144531 14.417969 17.484375 14.519531 17.808594 14.449219 C 18.136719 14.378906 18.40625 14.152344 18.53125 13.84375 C 20.105469 9.59375 24.191406 6.53125 29 6.53125 C 35.171875 6.53125 40.15625 11.519531 40.15625 17.6875 C 40.15625 18.144531 40.121094 18.59375 40.0625 19.0625 C 40.027344 19.34375 40.113281 19.625 40.296875 19.839844 C 40.480469 20.054688 40.75 20.179688 41.03125 20.1875 L 41.09375 20.1875 C 44.917969 20.1875 48 23.269531 48 27.09375 C 48 30.917969 44.917969 34 41.09375 34 L 32 34 C 31.640625 33.996094 31.304688 34.183594 31.121094 34.496094 C 30.941406 34.808594 30.941406 35.191406 31.121094 35.503906 C 31.304688 35.816406 31.640625 36.003906 32 36 L 41.09375 36 C 46 36 50 32 50 27.09375 C 50 22.542969 46.507813 18.925781 42.09375 18.40625 C 42.109375 18.164063 42.15625 17.9375 42.15625 17.6875 C 42.15625 10.4375 36.25 4.53125 29 4.53125 Z M 24.90625 24.96875 C 24.863281 24.976563 24.820313 24.988281 24.78125 25 C 24.316406 25.105469 23.988281 25.523438 24 26 L 24 43.5625 L 20.71875 40.28125 C 20.476563 40.03125 20.121094 39.925781 19.78125 40 C 19.40625 40.066406 19.105469 40.339844 19 40.703125 C 18.894531 41.070313 19.003906 41.460938 19.28125 41.71875 L 24.28125 46.71875 L 25 47.40625 L 25.71875 46.71875 L 30.71875 41.71875 C 31.117188 41.320313 31.117188 40.679688 30.71875 40.28125 C 30.320313 39.882813 29.679688 39.882813 29.28125 40.28125 L 26 43.5625 L 26 26 C 26.011719 25.710938 25.894531 25.433594 25.6875 25.238281 C 25.476563 25.039063 25.191406 24.941406 24.90625 24.96875 Z"></path></svg>
+                           <span>Импорт позиций</span>
+                       </label>
+                       <input type="file" id="file-positions" accept=".txt">
+
+                       <label for="file-directions" class="btn">
+                           <div class="cssload-container">
+                               <div class="cssload-speeding-wheel"></div>
+                           </div>
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M 29 4.53125 C 23.785156 4.53125 19.371094 7.652344 17.25 12.0625 C 16.121094 11.285156 14.8125 10.71875 13.34375 10.71875 C 9.617188 10.71875 6.644531 13.667969 6.4375 17.34375 C 2.710938 18.6875 0 22.164063 0 26.34375 C 0 31.671875 4.328125 36 9.65625 36 L 18 36 C 18.359375 36.003906 18.695313 35.816406 18.878906 35.503906 C 19.058594 35.191406 19.058594 34.808594 18.878906 34.496094 C 18.695313 34.183594 18.359375 33.996094 18 34 L 9.65625 34 C 5.40625 34 2 30.589844 2 26.34375 C 2 22.808594 4.382813 19.832031 7.625 18.9375 C 8.066406 18.808594 8.363281 18.394531 8.34375 17.9375 C 8.339844 17.796875 8.34375 17.726563 8.34375 17.71875 C 8.34375 14.941406 10.566406 12.71875 13.34375 12.71875 C 14.734375 12.71875 16 13.277344 16.90625 14.1875 C 17.144531 14.417969 17.484375 14.519531 17.808594 14.449219 C 18.136719 14.378906 18.40625 14.152344 18.53125 13.84375 C 20.105469 9.59375 24.191406 6.53125 29 6.53125 C 35.171875 6.53125 40.15625 11.519531 40.15625 17.6875 C 40.15625 18.144531 40.121094 18.59375 40.0625 19.0625 C 40.027344 19.34375 40.113281 19.625 40.296875 19.839844 C 40.480469 20.054688 40.75 20.179688 41.03125 20.1875 L 41.09375 20.1875 C 44.917969 20.1875 48 23.269531 48 27.09375 C 48 30.917969 44.917969 34 41.09375 34 L 32 34 C 31.640625 33.996094 31.304688 34.183594 31.121094 34.496094 C 30.941406 34.808594 30.941406 35.191406 31.121094 35.503906 C 31.304688 35.816406 31.640625 36.003906 32 36 L 41.09375 36 C 46 36 50 32 50 27.09375 C 50 22.542969 46.507813 18.925781 42.09375 18.40625 C 42.109375 18.164063 42.15625 17.9375 42.15625 17.6875 C 42.15625 10.4375 36.25 4.53125 29 4.53125 Z M 24.90625 24.96875 C 24.863281 24.976563 24.820313 24.988281 24.78125 25 C 24.316406 25.105469 23.988281 25.523438 24 26 L 24 43.5625 L 20.71875 40.28125 C 20.476563 40.03125 20.121094 39.925781 19.78125 40 C 19.40625 40.066406 19.105469 40.339844 19 40.703125 C 18.894531 41.070313 19.003906 41.460938 19.28125 41.71875 L 24.28125 46.71875 L 25 47.40625 L 25.71875 46.71875 L 30.71875 41.71875 C 31.117188 41.320313 31.117188 40.679688 30.71875 40.28125 C 30.320313 39.882813 29.679688 39.882813 29.28125 40.28125 L 26 43.5625 L 26 26 C 26.011719 25.710938 25.894531 25.433594 25.6875 25.238281 C 25.476563 25.039063 25.191406 24.941406 24.90625 24.96875 Z"></path></svg>
+                           <span>Импорт направлений</span>
+                       </label>
+                       <input type="file" id="file-directions" accept=".txt">
+                   </div>
+                    <div class="conf-tool">
+                        <button class="btn" type="button" onclick="simulateObject.simulateByData();">Обновить</button>
+                        <button class="btn" type="button" onclick="simulateObject.downloadFile();">Экспорт</button>
+                        <button id='refresh' class="btn" type="button" onclick="simulateObject.simulateNew(400);">Сброс</button>
+                    </div>
                 </div>
             </section>
 
         </div>
 
+        <div class="copyright">
+            <span>© Copyright 2021. All Rights Reserved. ver 0.1.12</span>
+        </div>
     </main>
     <script type='text/javascript'>
         $(document).ready(function() {
@@ -121,6 +147,7 @@
                 });
                 reader.readAsText(file);
             });
+            document.querySelector('canvas').style.width = (document.documentElement.clientWidth * 0.725) + 'px';
         });
 
         function changeValue(value) {
@@ -133,6 +160,7 @@
             if (value == "E =") simulateObject.energy(form);
             if (value == "M =")  simulateObject.magnetization(form);
         }
+
     </script>
     <script src="js/frontend.min.js"></script>
 </body>
