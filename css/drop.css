@@ -1,0 +1,14 @@
+body {
+    font:12px/1.4 verdana;
+    padding: 5px;
+    margin:10px;
+}
+
+#drop-area {
+    background: #F4F4F4;
+    border: 1px dashed grey;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.grey {color:grey;}

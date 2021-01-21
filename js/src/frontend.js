@@ -22,25 +22,24 @@ $('.sidebar-grid__import').bind('resize', function () {
     document.querySelector('.sidebar-grid__toolbar').style.height = 'calc(' + def + 'px - 1em)';
 });
 
-$('#file-positions').on('input keyup', function() {
+$('#file-positions').on('input keyup upload-pos', function() {
     var label = $('[for="file-positions"]');
-    fileInfo(label, 'позиций');
+    fileInfo(label);
 });
 
-$('#file-directions').on('input keyup', function() {
+$('#file-directions').on('input keyup upload-dir', function() {
     var label = $('[for="file-directions"]');
-    fileInfo(label, 'направлений');
+    fileInfo(label);
 });
 
 $('#refresh').on('click', function() {
-   // $('[for="file-positions"]').find('span').text('Импорт позиций');
-   // $('[for="file-directions"]').find('span').text('Импорт направлений');
     label = $('.is-ready');
     label.addClass('is-active');
     setTimeout(function() {
         label.removeClass('is-active');
         label.removeClass('is-ready');
     },520);
+    $('.dragover').removeClass('dragover');
 });
 
 $('.checked').on('click', function() {
@@ -52,13 +51,12 @@ $('.check-refresh').on('click', function() {
     $('.checked.is-active').removeClass('is-active');
 });
 
-function fileInfo(label, text) {
+function fileInfo(label) {
     label.addClass('is-active');
     label.addClass('is-ready');
 
     setTimeout(function() {
         label.removeClass('is-active');
-        //label.find('span').text('Импорт ' + text + ' завершен');
     },520);
 }
 
