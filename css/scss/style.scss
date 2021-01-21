@@ -487,8 +487,8 @@ input#display {
     font-family: $font-primary;
     margin: 1em 0;
     text-align: left;
-    padding-left: 3em;
-    padding-top: 1.15em;
+    padding: 1.5em;
+    position: relative;
   }
   input {display: none}
 }
@@ -501,6 +501,7 @@ label {
     position: absolute;
     width: 1.25em;
     transition: .1s;
+    top: 1.3em;
     path {
       fill:#fff;
     }
@@ -603,28 +604,43 @@ label.is-active {
   display: flex;
   font-family: $font-primary;
   width: calc(100% - 3.25em);
-  padding: .75em 1em;
+  padding: .25em .75em 1em;
   justify-content: space-between;
-  border-bottom: 1px solid #101113;
+  border-bottom: 1px solid #101215;
   font-size: .85em;
   input {
-    width: 3em;
-    padding: .6em .1em .6em 1em;
+    width: 4em;
+    padding: .55em .14em .55em 1em;
     text-align: right;
     border: none;
-    background: #f1f0f0;
+    background: #525c69;
+    color: #ffffff;
     border-radius: 3px;
     margin: .5em;
-    color: #1d2125;
-    font-family: "Quicksand", sans-serif;
+    font-family: $font-primary;
     float: right;
   }
   span {
     top: 1.15em;
     position: relative;
     color: #89939e;
+    left: .55em;
   }
   .__text {
     width: 100%;
   }
+}
+
+div#conf-load-info {
+  color: #89939e;
+  margin-bottom: 1em;
+  font-family: $font-primary;
+  font-size: .75em;
+  left: .2em;
+  position: relative;
+}
+
+.dragover label {
+  border: 2px dotted #989898;
+  background: #525d69;
 }
