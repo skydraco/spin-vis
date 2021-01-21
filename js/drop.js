@@ -1,24 +1,45 @@
-var dropArea = document.getElementById("drop-area");
-var result = document.getElementById("result");
+var dropAreaPos = document.getElementById("drop-area-pos");
+var dropAreaDir = document.getElementById("drop-area-dir");
 
-dropArea.addEventListener("drop", drop); // событие при перетаскивании объекта
-dropArea.addEventListener("dragover", dragover); // событие при наведении на объект
-dropArea.addEventListener("dragleave", dragleave);
-
-function drop(e) {
+dropAreaPos.addEventListener("drop", dropPos); // событие при перетаскивании объекта
+dropAreaPos.addEventListener("dragover", dragover); // событие при наведении на объект
+dropAreaPos.addEventListener("dragleave", dragleave);
+dropAreaDir.addEventListener("drop", dropDir); 
+dropAreaDir.addEventListener("dragover", dragover);
+dropAreaDir.addEventListener("dragleave", dragleave);
+function dropPos(e) {
     e.preventDefault();
-    
-    // информация о перетаксиваемом файле
-    var file = e.dataTransfer.files[0];
-    
-    // вывести информацию о файле
-    result.innerHTML = file.name + " <span class='grey'>(" + file.type + " — " + file.size + " байт)</span>";
-    this.style.borderColor = "grey"; 
-    // !!!!!!!!!!!!!!!!!!!!!!!!
-    //тут вставить что нужно сделать с файлом 
 
+
+        var file = e.dataTransfer.files[0];
+        const reader = new FileReader();
+        reader.addEventListener('load', (event) => {
+            let text = event.target.result;
+            let result = text.split `,`.map(x => +x);
+            simulateObject.spinPositions = result;
+            simulateObject.simulateByData();
+            });
+        reader.readAsText(file);
 
 }
+function dropDir(e) {
+    e.preventDefault();
+    
+
+    
+        var file = e.dataTransfer.files[0];
+        const reader = new FileReader();
+        reader.addEventListener('load', (event) => {
+            let text = event.target.result;
+            let result = text.split `,`.map(x => +x);
+            simulateObject.spinDirections = result;
+            simulateObject.simulateByData();
+            });
+        reader.readAsText(file);
+
+}
+
+
 
 // отмена события по умолчанию
 function dragover(e){
