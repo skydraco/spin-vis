@@ -515,7 +515,7 @@ label {
   justify-content: space-between;
   &> .btn {
     //width: 30%;
-    width: calc(50% - 1em);
+    width: calc(50% - .5em);
   }
 }
 

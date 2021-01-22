@@ -14,6 +14,7 @@ let webglspins;
 let iteration = 0;
 let n = 0;
 let simulateObject = {
+    insertedFile: "",
     spinPositions: [],
     spinDirections: [],
     spinNeighbor: [],
@@ -46,12 +47,9 @@ let simulateObject = {
     },
 
     downloadFile: () => {
-        const dataPositions = [simulateObject.spinPositions];
-        const dataDirections = [simulateObject.spinDirections];
-        var bbp = new Blob(dataPositions, { type: 'text/plain' });
-        var bbd = new Blob(dataDirections, { type: 'text/plain' });
-        saveAs(bbp, "positions.txt");
-        saveAs(bbd, "directions.txt");
+        const spinsStrings = parseToFile(simulateObject.spinPositions, simulateObject.spinDirections);
+        var bbp = new Blob(spinsStrings, { type: 'text/plain' });
+        saveAs(bbp, "spins.txt");
     },
 
     createwebglspins: () => {
@@ -73,9 +71,9 @@ let simulateObject = {
             for (var column = 0; column < Math.sqrt(n); column++) {
                 var number = 4 * (row * Math.sqrt(n) + column);
 
-                simulateObject.spinNeighbor[number] = simulateObject.border_check(row + 1) * Math.sqrt(n) + column;        // RIGHT
-                simulateObject.spinNeighbor[number + 1] = row * Math.sqrt(n) + simulateObject.border_check(column + 1);   // UP
-                simulateObject.spinNeighbor[number + 2] = simulateObject.border_check(row - 1) * Math.sqrt(n) + column;  // LEFT
+                simulateObject.spinNeighbor[number] = simulateObject.border_check(row + 1) * Math.sqrt(n) + column; // RIGHT
+                simulateObject.spinNeighbor[number + 1] = row * Math.sqrt(n) + simulateObject.border_check(column + 1); // UP
+                simulateObject.spinNeighbor[number + 2] = simulateObject.border_check(row - 1) * Math.sqrt(n) + column; // LEFT
                 simulateObject.spinNeighbor[number + 3] = row * Math.sqrt(n) + simulateObject.border_check(column - 1); // DOWN
             }
         }
@@ -88,13 +86,13 @@ let simulateObject = {
         var M = 0.;
 
         for (var num = 0; num < n * 3; num += 3) {
-            M_x += simulateObject.spinDirections[num];       // x
-            M_y += simulateObject.spinDirections[num + 1];   // y
-            M_z += simulateObject.spinDirections[num + 2];   // z
+            M_x += simulateObject.spinDirections[num]; // x
+            M_y += simulateObject.spinDirections[num + 1]; // y
+            M_z += simulateObject.spinDirections[num + 2]; // z
         }
 
         M = Math.sqrt(M_x * M_x + M_y * M_y + M_z * M_z) / (n);
-        form.display.value =Math.abs(M)
+        form.display.value = Math.abs(M)
     },
     ferromagnetic_create() {
 
@@ -141,13 +139,13 @@ let simulateObject = {
             Esys += simulateObject.espin(num)
         }
         Esys /= 2. * n
-        form.display.value =Esys;
+        form.display.value = Esys;
     },
 
     getRandomInclusive(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1)) + min;//Максимум и минимум включаются
+        return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
     },
     getRandomIzing() {
         return (Math.floor(Math.random() * 2) === 0) ? -1 : 1;
@@ -162,7 +160,7 @@ let simulateObject = {
 
         for (var row = 0; row < Math.sqrt(n); row++) {
             for (var column = 0; column < Math.sqrt(n); column++) {
-                var posit=simulateObject.getRandomIzing();
+                var posit = simulateObject.getRandomIzing();
                 var spinPosition = [2 * column, 2 * row, 0];
                 Array.prototype.push.apply(simulateObject.spinPositions, spinPosition);
                 var spinDirection = [0, 0, posit];
@@ -181,16 +179,17 @@ let simulateObject = {
             for (var column = 0; column < Math.sqrt(n); column++) {
                 var spinPosition = [2 * column, 2 * row, 0];
                 Array.prototype.push.apply(simulateObject.spinPositions, spinPosition);
-                var phi= simulateObject.getRandomInclusive(0, 360);
-                var theta=simulateObject.getRandomInclusive(0, 180);
+                var phi = simulateObject.getRandomInclusive(0, 360);
+                var theta = simulateObject.getRandomInclusive(0, 180);
 
-                var phi2= phi*Math.PI/180.;
-                var theta2=theta*Math.PI/180.;
+                var phi2 = phi * Math.PI / 180.;
+                var theta2 = theta * Math.PI / 180.;
 
                 var spinDirection = [
-                    (Math.sin(theta2)*Math.cos(phi2)),
-                    (Math.sin(theta2)*Math.sin(phi2)),
-                    (Math.cos(theta2))];
+                    (Math.sin(theta2) * Math.cos(phi2)),
+                    (Math.sin(theta2) * Math.sin(phi2)),
+                    (Math.cos(theta2))
+                ];
 
                 Array.prototype.push.apply(simulateObject.spinDirections, spinDirection);
             }
@@ -213,10 +212,9 @@ let simulateObject = {
                 var y = (row - Math.sqrt(n) / 2);
                 var d = (x * x + y * y + h * h);
 
-                var spinDirection = [
-                    -(h * x / d),
-                    -(h * y / d),
-                    (x * x + y * y - h * h) / d];
+                var spinDirection = [-(h * x / d), -(h * y / d),
+                    (x * x + y * y - h * h) / d
+                ];
 
                 Array.prototype.push.apply(simulateObject.spinDirections, spinDirection);
             }
@@ -225,11 +223,47 @@ let simulateObject = {
     },
     default_camera() {
         webglspins.updateOptions({
-        cameraLocation: [Math.sqrt(n) / 1.5, Math.sqrt(n) * 0.95, Math.sqrt(n) * 2.5],
-        centerLocation: [Math.sqrt(n) / 1.5, Math.sqrt(n) * 0.95, 0],
-        upVector: [0, 1, 0]
+            cameraLocation: [Math.sqrt(n) / 1.5, Math.sqrt(n) * 0.95, Math.sqrt(n) * 2.5],
+            centerLocation: [Math.sqrt(n) / 1.5, Math.sqrt(n) * 0.95, 0],
+            upVector: [0, 1, 0]
         });
     }
-
 }
 
+function parseToFile(spinPositions, spinDirections) {
+    const spinsStrings = [];
+    for (let index = 0; index < spinPositions.length; index += 3) {
+        let spinPosition = spinPositions.slice(index, index + 3);
+        let spinDirection = spinDirections.slice(index, index + 3);
+
+        let pos = spinPosition.map(el => `${el} \t`);
+        let dir = spinDirection.map(el => `${el} \t`);
+        let result = "";
+        pos.forEach(p => result += p);
+        dir.forEach(p => result += p);
+        // чтобы в последней строке не добавлялся снос
+        if (index != spinPositions.length - 3)
+            result += "\n";
+        spinsStrings.push(result);
+    }
+    return spinsStrings;
+}
+
+function parseToArrays(text, simulateObject) {
+    const spinsStrings = text.split('\n');
+    simulateObject.spinPositions = [];
+    simulateObject.spinDirections = [];
+
+    for (let index = 0; index < spinsStrings.length; index += 1) {
+        let str = spinsStrings[index].split('\t');
+        let positions = str.slice(0, 3);
+        let directions = str.slice(3, 6);
+
+        for (let index = 0; index < 3; index++) {
+            const position = parseFloat(positions[index]);
+            const direction = parseFloat(directions[index]);
+            simulateObject.spinPositions.push(position);
+            simulateObject.spinDirections.push(direction);
+        }
+    }
+}
