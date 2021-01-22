@@ -13,7 +13,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/FileSaver.min.js"></script>
-    <script src="js/simulate.min.js"></script>
+    <script src="js/src/simulate.js"></script>
     <!-- <script src="js/src/download.js"></script> -->
     <script src="js/webglspins.min.js"></script>
     <!-- DEMO WEBGLSPINS: https://github.com/FlorianRhiem/WebGLSpins.js/blob/master/examples/demo.html -->
@@ -55,35 +55,35 @@
                 <div class="sidebar-grid__import resizable">
                     <!-- import data -->
 
-                            <form name="sci-calc">
-                                <div class="sci-calc-input">
-                                       <input id="display" name="display" maxlength="25" value="0.00" disabled/>
-                                    <div id="value"></div>
-                                </div>
-                                <div class="sci-calc-btn">
-                                    <div class="__head">Расчитать</div>
-                                    <div class="__body col-2">
-                                        <button type="button" class="btn" title="Энергия системы" onclick="simulateObject.energy(form); changeValue('E =')">Энергия системы</button>
-                                        <button type="button" class="btn" title="Намагниченность" onclick="simulateObject.magnetization(form); changeValue('M =')" >Намагниченность</button>
-                                    </div>
-                                </div>
-                                <div class="sci-calc-btn">
-                                    <div class="__head">Сгенерировать модель</div>
-                                    <div class="__body col-4">
-                                        <button type="button" class="btn checked" title="Скирмион" onclick="simulateObject.skyrmion_create(); getNewValue(form)">S</button>
-                                        <button type="button" class="btn checked" title="Ферромагнетик" onclick="simulateObject.ferromagnetic_create(); getNewValue(form)">F</button>
-                                        <button type="button" class="btn checked" title="Cлучайная модель Изинга" onclick="simulateObject.randomspinIzing_create(); getNewValue(form)">R-I</button>
-                                        <button type="button" class="btn checked" title="Cлучайная модель" onclick="simulateObject.randomspin_create(); getNewValue(form)">R</button>
-                                    </div>
-                                </div>
-                                <div class="sci-calc-btn">
-                                    <div class="__head">Инструменты</div>
-                                    <div class="__body col-2">
-                                        <button type="button" class="btn check-refresh" title="Очистить" onclick="simulateObject.simulateNew(400); this.form.display.value='0.00'; changeValue('')">Очистить</button>
-                                        <button type="button" class="btn" title="Камера по умолчанию" onclick="simulateObject.default_camera()">Камера по умолчанию</button>
-                                    </div>
-                                </div>
-                            </form>
+                    <form name="sci-calc">
+                        <div class="sci-calc-input">
+                            <input id="display" name="display" maxlength="25" value="0.00" disabled/>
+                            <div id="value"></div>
+                        </div>
+                        <div class="sci-calc-btn">
+                            <div class="__head">Расчитать</div>
+                            <div class="__body col-2">
+                                <button type="button" class="btn" title="Энергия системы" onclick="simulateObject.energy(form); changeValue('E =')">Энергия системы</button>
+                                <button type="button" class="btn" title="Намагниченность" onclick="simulateObject.magnetization(form); changeValue('M =')">Намагниченность</button>
+                            </div>
+                        </div>
+                        <div class="sci-calc-btn">
+                            <div class="__head">Сгенерировать модель</div>
+                            <div class="__body col-4">
+                                <button type="button" class="btn checked" title="Скирмион" onclick="simulateObject.skyrmion_create(); getNewValue(form)">S</button>
+                                <button type="button" class="btn checked" title="Ферромагнетик" onclick="simulateObject.ferromagnetic_create(); getNewValue(form)">F</button>
+                                <button type="button" class="btn checked" title="Cлучайная модель Изинга" onclick="simulateObject.randomspinIzing_create(); getNewValue(form)">R-I</button>
+                                <button type="button" class="btn checked" title="Cлучайная модель" onclick="simulateObject.randomspin_create(); getNewValue(form)">R</button>
+                            </div>
+                        </div>
+                        <div class="sci-calc-btn">
+                            <div class="__head">Инструменты</div>
+                            <div class="__body col-2">
+                                <button type="button" class="btn check-refresh" title="Очистить" onclick="simulateObject.simulateNew(400); this.form.display.value='0.00'; changeValue('')">Очистить</button>
+                                <button type="button" class="btn" title="Камера по умолчанию" onclick="simulateObject.default_camera()">Камера по умолчанию</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
                 <div class="sidebar-grid__toolbar">
@@ -91,38 +91,26 @@
                     <div class="conf-init">
                         <div class="__text">
                             <span>Размерность решетки L = </span>
-                            <input id='initN' maxlength="25" value="20" name="initN" type="number"/>
+                            <input id='initN' maxlength="25" value="20" name="initN" type="number" />
                         </div>
                     </div>
 
-                   <div class="conf-load">
-                       
-                       <div id="conf-load-info">Перетяните файл для импорта</div>
+                    <div class="conf-load">
 
-                       <div id="drop-area-pos">
-                           <label for="file-positions" class="btn">
+                        <div id="conf-load-info">Перетяните файл для импорта</div>
+
+                        <div id="drop-area-pos">
+                            <label for="file-spins" class="btn">
                                <div class="cssload-container">
                                    <div class="cssload-speeding-wheel"></div>
                                </div>
                                <svg class="act" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M 26.980469 5.9902344 A 1.0001 1.0001 0 0 0 26.292969 6.2929688 L 11 21.585938 L 4.7070312 15.292969 A 1.0001 1.0001 0 1 0 3.2929688 16.707031 L 10.292969 23.707031 A 1.0001 1.0001 0 0 0 11.707031 23.707031 L 27.707031 7.7070312 A 1.0001 1.0001 0 0 0 26.980469 5.9902344 z"></path></svg>
                                <svg class="no-act" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 16 2.5859375 L 11.292969 7.2929688 L 12.707031 8.7070312 L 15 6.4140625 L 15 21 L 17 21 L 17 6.4140625 L 19.292969 8.7070312 L 20.707031 7.2929688 L 16 2.5859375 z M 9 11 C 7.3550302 11 6 12.35503 6 14 L 6 26 C 6 27.64497 7.3550302 29 9 29 L 23 29 C 24.64497 29 26 27.64497 26 26 L 26 14 C 26 12.35503 24.64497 11 23 11 L 20 11 L 20 13 L 23 13 C 23.56503 13 24 13.43497 24 14 L 24 26 C 24 26.56503 23.56503 27 23 27 L 9 27 C 8.4349698 27 8 26.56503 8 26 L 8 14 C 8 13.43497 8.4349698 13 9 13 L 12 13 L 12 11 L 9 11 z"></path></svg>
-                               <span>Импорт позиций</span>
+                               <span>Импорт данных спинов</span>
                            </label>
-                           <input type="file" id="file-positions" accept=".txt">
-                       </div>
-
-                       <div id="drop-area-dir">
-                           <label for="file-directions" class="btn">
-                               <div class="cssload-container">
-                                   <div class="cssload-speeding-wheel"></div>
-                               </div>
-                               <svg class="act" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M 26.980469 5.9902344 A 1.0001 1.0001 0 0 0 26.292969 6.2929688 L 11 21.585938 L 4.7070312 15.292969 A 1.0001 1.0001 0 1 0 3.2929688 16.707031 L 10.292969 23.707031 A 1.0001 1.0001 0 0 0 11.707031 23.707031 L 27.707031 7.7070312 A 1.0001 1.0001 0 0 0 26.980469 5.9902344 z"></path></svg>
-                               <svg class="no-act" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 16 2.5859375 L 11.292969 7.2929688 L 12.707031 8.7070312 L 15 6.4140625 L 15 21 L 17 21 L 17 6.4140625 L 19.292969 8.7070312 L 20.707031 7.2929688 L 16 2.5859375 z M 9 11 C 7.3550302 11 6 12.35503 6 14 L 6 26 C 6 27.64497 7.3550302 29 9 29 L 23 29 C 24.64497 29 26 27.64497 26 26 L 26 14 C 26 12.35503 24.64497 11 23 11 L 20 11 L 20 13 L 23 13 C 23.56503 13 24 13.43497 24 14 L 24 26 C 24 26.56503 23.56503 27 23 27 L 9 27 C 8.4349698 27 8 26.56503 8 26 L 8 14 C 8 13.43497 8.4349698 13 9 13 L 12 13 L 12 11 L 9 11 z"></path></svg>
-                               <span>Импорт направлений</span>
-                           </label>
-                           <input type="file" id="file-directions" accept=".txt">
-                       </div>
-                   </div>
+                            <input type="file" id="file-spins" accept=".txt">
+                        </div>
+                    </div>
 
                     <div class="conf-tool">
                         <button class="btn" type="button" onclick="simulateObject.downloadFile();">Экспорт</button>
@@ -142,29 +130,15 @@
     </main>
     <script type='text/javascript'>
         $(document).ready(function() {
-            simulateObject.simulateNew(400);
-            const filePositions = document.getElementById('file-positions');
-            const fileDirections = document.getElementById('file-directions');
             const initN = document.getElementById('initN');
-            filePositions.addEventListener('change', (event) => {
+            simulateObject.simulateNew(initN.value * initN.value);
+            const fileinput = document.getElementById('file-spins');
+            fileinput.addEventListener('change', (event) => {
                 const file = event.target.files[0];
                 const reader = new FileReader();
                 reader.addEventListener('load', (event) => {
                     let text = event.target.result;
-                    let result = text.split `,`.map(x => +x);
-                    simulateObject.spinPositions = result;
-                    simulateObject.simulateByData();
-                });
-                reader.readAsText(file);
-            });
-
-            fileDirections.addEventListener('change', (event) => {
-                const file = event.target.files[0];
-                const reader = new FileReader();
-                reader.addEventListener('load', (event) => {
-                    let text = event.target.result;
-                    let result = text.split `,`.map(x => +x);
-                    simulateObject.spinDirections = result;
+                    parseToArrays(text, simulateObject);
                     simulateObject.simulateByData();
                 });
                 reader.readAsText(file);
@@ -172,11 +146,10 @@
 
             initN.addEventListener('change', (event) => {
                 const L = event.target.value;
-                simulateObject.simulateNew(L*L);
+                simulateObject.simulateNew(L * L);
             });
             document.querySelector('canvas').style.width = (document.documentElement.clientWidth * 0.725) + 'px';
         });
-        
     </script>
     <script src="js/frontend.min.js"></script>
     <script src="js/drop.min.js"></script>
