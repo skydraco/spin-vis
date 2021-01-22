@@ -22,13 +22,8 @@ $('.sidebar-grid__import').bind('resize', function () {
     document.querySelector('.sidebar-grid__toolbar').style.height = 'calc(' + def + 'px - 1em)';
 });
 
-$('#file-positions').on('input keyup upload-pos', function() {
-    var label = $('[for="file-positions"]');
-    fileInfo(label);
-});
-
-$('#file-directions').on('input keyup upload-dir', function() {
-    var label = $('[for="file-directions"]');
+$('#file-spins').on('input keyup upload-pos', function() {
+    var label = $('[for="file-spins"]');
     fileInfo(label);
 });
 
