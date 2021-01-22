@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/drop.min.css">
     <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="https://github.githubassets.com/favicons/favicon-dark.svg">
 
     <script src="js/jquery.min.js"></script>
@@ -129,6 +128,9 @@
                         <button class="btn" type="button" onclick="simulateObject.downloadFile();">Экспорт</button>
                         <button id='refresh' class="btn" type="button" onclick="simulateObject.simulateNew(initN.value*initN.value);">Сброс</button>
                     </div>
+                    <div class="conf-tool row-2">
+                        <button type="button" class="btn" title="Cохранить как PNG" onclick="DownloadImage()">Cохранить как PNG</button>
+                    </div>
                 </div>
             </section>
 
@@ -178,6 +180,16 @@
     </script>
     <script src="js/frontend.min.js"></script>
     <script src="js/drop.min.js"></script>
+    <script src="js/html2canvas.min.js"></script>
+    <script>
+        HTMLCanvasElement.prototype.getContext = function(origFn) {
+            return function(type, attribs) {
+                attribs = attribs || {};
+                attribs.preserveDrawingBuffer = true;
+                return origFn.call(this, type, attribs);
+            };
+        }(HTMLCanvasElement.prototype.getContext);
+    </script>
 </body>
 
 </html>

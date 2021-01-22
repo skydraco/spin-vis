@@ -71,3 +71,20 @@ function getNewValue(e) {
     if (value == "M =")  simulateObject.magnetization(form);
 }
 
+var html2canvasConfiguration = {
+    useCORS: true,
+    backgroundColor: null,
+    logging: true,
+    imageTimeout: 0
+};
+
+function DownloadImage() {
+    html2canvas(document.querySelector('#webgl-canvas') ,html2canvasConfiguration).then(function(canvas) {
+        var a = document.createElement('a');
+        a.href = canvas.toDataURL();
+        a.download = 'spin.png';
+        a.click();
+        a.remove();
+    })
+}
+

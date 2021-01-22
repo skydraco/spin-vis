@@ -644,3 +644,10 @@ div#conf-load-info {
   border: 2px dotted #989898;
   background: #525d69;
 }
+
+.conf-tool.row-2 {
+  padding-top: 0;
+  button {
+    width: 100%;
+  }
+}
