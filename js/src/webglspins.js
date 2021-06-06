@@ -1603,4 +1603,3 @@ WebGLSpins._BoundingBoxRenderer.prototype.cleanup = function() {
     gl.deleteProgram(this._program);
     gl.disableVertexAttribArray(0);
 };
-
